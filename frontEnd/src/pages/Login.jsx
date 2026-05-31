@@ -13,8 +13,13 @@ const Login = () => {
     e.preventDefault();
     try {
       const data = await loginUser(email, password);
-      if (data.role === 'admin') navigate('/admin');
-      else navigate('/student');
+      
+      // 🚀 FIXED DYNAMIC REDIRECT: Admin aur SuperAdmin dono ab seedhe /admin portal par jayenge
+      if (data.role === 'admin' || data.role === 'superadmin') {
+        navigate('/admin');
+      } else {
+        navigate('/student');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid Credentials');
     }

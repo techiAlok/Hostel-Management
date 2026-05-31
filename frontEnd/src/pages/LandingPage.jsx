@@ -42,19 +42,27 @@ const LandingPage = () => {
           <p className="text-slate-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
             A real-time administrative matrix managing room allocation pipelines, structural vacancies, and residential data synchronization transparently.
           </p>
+          
+          {/* Action Button Grid Panel */}
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
             <button 
               onClick={() => navigate('/login')}
-              className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-8 py-3.5 rounded-xl font-bold shadow-xl shadow-indigo-600/20 transition-all duration-200 active:scale-98"
+              className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-6 py-3.5 rounded-xl font-bold shadow-xl shadow-indigo-600/20 transition-all duration-200 active:scale-98"
             >
               Enter Dashboard Portal
             </button>
-            <a 
-              href="#features" 
-              className="w-full sm:w-auto bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-300 px-8 py-3.5 rounded-xl font-bold transition text-center"
+            <button 
+              onClick={() => navigate('/register?role=admin')}
+              className="w-full sm:w-auto bg-slate-900 hover:bg-slate-850 border border-slate-800 text-purple-400 px-6 py-3.5 rounded-xl font-bold transition duration-200 active:scale-98"
             >
-              Explore Architecture
-            </a>
+              Register as Admin
+            </button>
+            <button 
+              onClick={() => navigate('/register?role=student')}
+              className="w-full sm:w-auto bg-slate-900 hover:bg-slate-850 border border-slate-800 text-emerald-400 px-6 py-3.5 rounded-xl font-bold transition duration-200 active:scale-98"
+            >
+              Register as Student
+            </button>
           </div>
         </div>
 
