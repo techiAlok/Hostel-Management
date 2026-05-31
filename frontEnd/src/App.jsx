@@ -6,31 +6,38 @@ import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import StudentDashboard from './pages/StudentDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
+import MainLayout from './components/MainLayout'; // 🚀 Imported Global Layout Wrapper
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Main Entry point */}
-        <Route path="/" element={<LandingPage />} />
         
-        {/* Authentication Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        {/* 🚀 NESTED ROUTING MATRIX: Is wrapper ke andar ke saare routes par Header automatic locked rahega */}
+        <Route element={<MainLayout />}>
+          
+          {/* Main Entry point */}
+          <Route path="/" element={<LandingPage />} />
+          
+          {/* Authentication Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        {/* 🚀 FIXED ADMIN ROUTE: Ab superadmin role ko bhi is path ka access milega */}
-        <Route path="/admin" element={
-          <ProtectedRoute allowedRoles={['admin', 'superadmin']}>
-            <AdminDashboard />
-          </ProtectedRoute>
-        } />
+          {/* Protected Admin Route */}
+          <Route path="/admin" element={
+            <ProtectedRoute allowedRoles={['admin', 'superadmin']}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
 
-        {/* Protected Student Routes */}
-        <Route path="/student" element={
-          <ProtectedRoute allowedRoles={['student']}>
-            <StudentDashboard />
-          </ProtectedRoute>
-        } />
+          {/* Protected Student Routes */}
+          <Route path="/student" element={
+            <ProtectedRoute allowedRoles={['student']}>
+              <StudentDashboard />
+            </ProtectedRoute>
+          } />
+
+        </Route>
 
         {/* Wildcard Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
